@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default class ReviewScreen extends Component {
 	render() {
 		return (
-			<View style={styles.container}>
+			<View>
 				<Text>I'm the ReviewScreen component</Text>
 			</View>
 		);

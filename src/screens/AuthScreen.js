@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default class AuthScreen extends Component {
 	render() {
 		return (
-			<View style={styles.container}>
+			<View>
 				<Text>I'm the AuthScreen component</Text>
 			</View>
 		);

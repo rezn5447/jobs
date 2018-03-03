@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default class SettingsScreen extends Component {
 	render() {
 		return (
-			<View style={styles.container}>
+			<View>
 				<Text>I'm the SettingsScreen component</Text>
 			</View>
 		);
