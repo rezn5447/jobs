@@ -5,10 +5,15 @@ import { AuthScreen, WelcomeScreen } from './src/screens';
 
 export default class App extends Component {
 	render() {
-		const MainNavigator = TabNavigator({
-			welcome: { screen: WelcomeScreen },
-			auth: { screen: AuthScreen }
-		});
+		const MainNavigator = TabNavigator(
+			{
+				welcome: { screen: WelcomeScreen },
+				auth: { screen: AuthScreen }
+			},
+			{
+				tabBarPosition: 'bottom'
+			}
+		);
 
 		return <MainNavigator />;
 	}
