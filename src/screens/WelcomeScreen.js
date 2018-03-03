@@ -4,7 +4,11 @@ import { View, Text, StyleSheet } from 'react-native';
 export default class WelcomeScreen extends Component {
 	render() {
 		return (
-			<View style={styles.container}>
+			<View>
+				<Text>I'm the WelcomeScreen component</Text>
+				<Text>I'm the WelcomeScreen component</Text>
+				<Text>I'm the WelcomeScreen component</Text>
+				<Text>I'm the WelcomeScreen component</Text>
 				<Text>I'm the WelcomeScreen component</Text>
 			</View>
 		);
