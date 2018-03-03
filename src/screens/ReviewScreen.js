@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 export default class ReviewScreen extends Component {
+	static navigationOptions = {};
+	constructor(props) {
+		super(props);
+
+		this.state = { text: 'whoop whoop' };
+	}
 	render() {
 		return (
 			<View>
-				<Text>I'm the ReviewScreen component</Text>
+				<Text>{this.state.text}</Text>
 			</View>
 		);
 	}
