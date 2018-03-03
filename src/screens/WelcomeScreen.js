@@ -6,6 +6,10 @@ export default class WelcomeScreen extends Component {
 		return (
 			<View>
 				<Text>I'm the WelcomeScreen component</Text>
+				<Text>I'm the WelcomeScreen component</Text>
+				<Text>I'm the WelcomeScreen component</Text>
+				<Text>I'm the WelcomeScreen component</Text>
+				<Text>I'm the WelcomeScreen component</Text>
 			</View>
 		);
 	}

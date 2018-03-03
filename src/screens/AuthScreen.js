@@ -6,6 +6,10 @@ export default class AuthScreen extends Component {
 		return (
 			<View>
 				<Text>I'm the AuthScreen component</Text>
+				<Text>I'm the AuthScreen component</Text>
+				<Text>I'm the AuthScreen component</Text>
+				<Text>I'm the AuthScreen component</Text>
+				<Text>I'm the AuthScreen component</Text>
 			</View>
 		);
 	}
