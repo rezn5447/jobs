@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Button } from 'react-native-elements';
 
 export default class ReviewScreen extends Component {
-	static navigationOptions = {};
-	constructor(props) {
-		super(props);
+	static navigationOptions = ({ navigation }) => {
+		return {
+			title: 'Review Jobs',
+			headerRight: (
+				<Button
+					title="Settings"
+					onPress={() => {
+						navigation.navigate('settings');
+					}}
+				/>
+			)
+		};
+	};
 
-		this.state = { text: 'whoop whoop' };
-	}
 	render() {
 		return (
-			<View>
-				<Text>{this.state.text}</Text>
+			<View style={styles.container}>
+				<Text>I'm the ReviewScreen component</Text>
 			</View>
 		);
 	}
