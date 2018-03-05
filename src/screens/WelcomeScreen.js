@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Slides } from '../components';
 
 export default class WelcomeScreen extends Component {
 	render() {
-		return (
-			<View style={styles.container}>
-				<Text>I'm the WelcomeScreen component</Text>
-				<Text>I'm the WelcomeScreen component</Text>
-				<Text>I'm the WelcomeScreen component</Text>
-				<Text>I'm the WelcomeScreen component</Text>
-				<Text>I'm the WelcomeScreen component</Text>
-			</View>
-		);
+		return <Slides />;
 	}
 }
 
