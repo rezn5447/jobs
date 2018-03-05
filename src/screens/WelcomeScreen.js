@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import { Slides } from '../components';
 
 const SLIDE_DATA = [
@@ -10,17 +10,10 @@ const SLIDE_DATA = [
 
 export default class WelcomeScreen extends Component {
 	onSlidesComplete = () => {
-		this.props.navigation.navigate('main');
+		this.props.navigation.navigate('auth');
 		alert('completed!!!');
 	};
 	render() {
 		return <Slides data={SLIDE_DATA} onComplete={this.onSlidesComplete} />;
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		margin: 20
-	}
-});

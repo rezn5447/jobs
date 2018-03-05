@@ -53,6 +53,6 @@ const styles = {
 	},
 	button: {
 		backgroundColor: '#0288D1',
-		marginTop: 15
+		marginTop: 25
 	}
 };
