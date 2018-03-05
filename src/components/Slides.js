@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Dimensions } from 'react-native';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export default class Slides extends Component {
 	renderSlides() {
 		return this.props.data.map(slide => {
 			return (
-				<View key={slide.text}>
-					<Text>{slide.text}</Text>
+				<View key={slide.text} style={styles.slide}>
+					<Text style={styles.text}>{slide.text}</Text>
 				</View>
 			);
 		});
@@ -14,9 +16,21 @@ export default class Slides extends Component {
 
 	render() {
 		return (
-			<ScrollView horizontal style={{ flex: 1 }}>
+			<ScrollView horizontal pagingEnabled style={{ flex: 1 }}>
 				{this.renderSlides()}
 			</ScrollView>
 		);
 	}
 }
+
+const styles = {
+	slide: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: SCREEN_WIDTH
+	},
+	text: {
+		fontSize: 30
+	}
+};
