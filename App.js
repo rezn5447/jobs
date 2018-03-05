@@ -9,6 +9,7 @@ import {
 	SettingsScreen,
 	ReviewScreen
 } from './src/screens';
+import { Provider } from 'react-redux';
 
 export default class App extends Component {
 	render() {
