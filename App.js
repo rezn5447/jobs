@@ -9,7 +9,7 @@ import {
 	ReviewScreen
 } from './src/screens';
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './src/store';
 
 export default class App extends Component {
 	render() {
