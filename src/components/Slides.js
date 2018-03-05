@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 
 export default class Slides extends Component {
+	renderSlides() {
+		return this.props.data.map(slide => {
+			return (
+				<View key={slide.text}>
+					<Text>{slide.text}</Text>
+				</View>
+			);
+		});
+	}
+
 	render() {
 		return (
-			<View>
-				<Text>I'm the Slides component</Text>
-			</View>
+			<ScrollView horizontal style={{ flex: 1 }}>
+				{this.renderSlides()}
+			</ScrollView>
 		);
 	}
 }
