@@ -11,8 +11,8 @@ const SLIDE_DATA = [
 export default class WelcomeScreen extends Component {
 	onSlidesComplete = () => {
 		this.props.navigation.navigate('auth');
-		alert('completed!!!');
 	};
+
 	render() {
 		return <Slides data={SLIDE_DATA} onComplete={this.onSlidesComplete} />;
 	}
