@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-export default class AuthScreen extends Component {
+class AuthScreen extends Component {
+	componentDidMount = () => {
+		this.props.facebookLogin();
+	};
+
 	render() {
 		return (
-			<View style={styles.container}>
+			<View>
 				<Text>I'm the AuthScreen component</Text>
 				<Text>I'm the AuthScreen component</Text>
 				<Text>I'm the AuthScreen component</Text>
@@ -15,9 +21,4 @@ export default class AuthScreen extends Component {
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		margin: 20
-	}
-});
+export default connect(null, actions)(AuthScreen);
