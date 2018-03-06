@@ -6,9 +6,11 @@ export const facebookLogin = () => async dispatch => {
 	let token = await AsyncStorage.getItem('fb_token');
 	if (token) {
 		//Dispatch an action saying FB login is done
+		console.log('token exists');
 		dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
 	} else {
 		// Start up FB Login process
+		console.log('no token');
 		doFacebookLogin(dispatch);
 	}
 };
