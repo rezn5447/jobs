@@ -9,7 +9,6 @@ export default class Slides extends Component {
 			return (
 				<Button
 					title="Onwards!"
-					raised
 					buttonStyle={styles.button}
 					onPress={this.props.onComplete}
 				/>
