@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, BackHandler, ToastAndroid } from 'react-native';
+import { MapView } from 'expo';
 
 export default class MapScreen extends Component {
+	state = {
+		region: {
+			longitude: -122,
+			latitude: 37,
+			longitudeDelta: 0.04,
+			latitudeDelta: 0.09
+		}
+	};
+
 	componentDidMount() {
 		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
 	}
@@ -18,11 +28,7 @@ export default class MapScreen extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text>I'm the MapScreen component</Text>
-				<Text>I'm the MapScreen component</Text>
-				<Text>I'm the MapScreen component</Text>
-				<Text>I'm the MapScreen component</Text>
-				<Text>I'm the MapScreen component</Text>
+				<MapView region={this.state.region} style={{ flex: 1 }} />
 			</View>
 		);
 	}
