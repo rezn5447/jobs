@@ -1,10 +1,33 @@
 import axios from 'axios';
 import reverseGeocode from 'latlng-to-zip';
+import qs from 'qs';
 
 import { FETCH_JOBS } from './types';
 
+const JOB_ROOT_URL = 'http://api.indeed.com/ads/apisearch?';
+
+const JOB_QUERY_PARAMS = {
+	publisher: '42017388033816157',
+	format: 'json',
+	v: '2',
+	latlong: 1,
+	radius: 10,
+	q: 'javascript'
+};
+
+const buildJobsUrl = zip => {
+	const query = qs.stringify({ ...JOB_QUERY_PARAMS, l: zip });
+	return `${JOB_ROOT_URL}${query}`;
+};
+
 export const fetchJobs = region => async dispatch => {
-	let { response } = axios.get(
-		`http://api.indeed.com/ads/apisearch?publisher=4201738803816157&q=java&l=austin&v=2&format=json`
-	);
+	try {
+		let zip = await reverseGeocode(region);
+		const url = buildJobsUrl(zip);
+		let { data } = await axios.get(url);
+		console.log(data);
+		dispatch({ type: FETCH_JOBS, payload: data });
+	} catch (e) {
+		console.error(e);
+	}
 };

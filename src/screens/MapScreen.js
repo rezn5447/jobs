@@ -7,8 +7,11 @@ import {
 	ActivityIndicator
 } from 'react-native';
 import { MapView } from 'expo';
+import { connect } from 'react-redux';
 
-export default class MapScreen extends Component {
+import * as actions from '../actions';
+
+class MapScreen extends Component {
 	state = {
 		mapLoaded: false,
 		region: {
@@ -64,3 +67,5 @@ const styles = {
 		flex: 1
 	}
 };
+
+export default connect(null, actions)(MapScreen);
