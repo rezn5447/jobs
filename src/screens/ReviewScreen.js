@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
@@ -25,6 +25,20 @@ class ReviewScreen extends Component {
 		};
 	};
 
+	renderLikes() {
+		return this.props.likes.map(job => {
+			return (
+				<Card>
+					<View style={{ height: 200 }}>
+						<View style={styles.detailWrapper}>
+							<Text style={styles.italics}>{job.company}</Text>
+							<Text style={styles.italics}>{job.formattedRelativeTime}</Text>
+						</View>
+					</View>
+				</Card>
+			);
+		});
+	}
 	render() {
 		return (
 			<View style={styles.container}>
@@ -37,6 +51,14 @@ class ReviewScreen extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1
+	},
+	detailWrapper: {
+		marginBottom: 10,
+		flexDirection: 'row',
+		justifyContent: 'space-around'
+	},
+	italics: {
+		fontStyle: 'italic'
 	}
 });
 
