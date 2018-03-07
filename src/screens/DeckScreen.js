@@ -3,9 +3,7 @@ import { View, Text, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { MapView } from 'expo';
 import { Card, Button } from 'react-native-elements';
-
 import Swipe from '../components/Swipe';
-
 import * as actions from '../actions';
 
 class DeckScreen extends Component {
@@ -46,6 +44,7 @@ class DeckScreen extends Component {
 					data={this.props.jobs}
 					renderCard={this.renderCard}
 					renderNoMoreCards={this.renderNoMoreCards}
+					onSwipeRight={job => this.props.likeJob(job)}
 					keyProp="jobkey"
 				/>
 			</View>
@@ -55,7 +54,8 @@ class DeckScreen extends Component {
 
 const styles = {
 	container: {
-		flex: 1
+		flex: 1,
+		marginTop: 10
 	},
 	detailWrapper: {
 		flexDirection: 'row',
