@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import { Button } from 'react-native-elements';
+import { connect } from 'react-redux';
 
-export default class ReviewScreen extends Component {
+import * as actions from '../actions';
+
+class ReviewScreen extends Component {
 	static navigationOptions = ({ navigation }) => {
 		return {
 			title: Platform.OS === 'android' ? 'Review Jobs' : 'Bloop',
@@ -36,3 +39,9 @@ const styles = StyleSheet.create({
 		flex: 1
 	}
 });
+
+mapStateToProps = ({ likes }) => {
+	return { likes };
+};
+
+export default connect(mapStateToProps, actions)(ReviewScreen);
