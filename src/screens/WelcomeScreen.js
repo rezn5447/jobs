@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { AsyncStorage } from 'react-native';
-import _ from 'lodash';
 import { AppLoading } from 'expo';
-
+import _ from 'lodash';
 import { Slides } from '../components';
 
 const SLIDE_DATA = [

@@ -6,24 +6,22 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class ReviewScreen extends Component {
-	static navigationOptions = ({ navigation }) => {
-		return {
-			title: Platform.OS === 'android' ? 'Review Jobs' : 'Bloop',
-			headerStyle: {
-				marginTop: Platform.OS === 'android' ? 10 : 0
-			},
-			headerRight: (
-				<Button
-					title="Settings"
-					onPress={() => {
-						navigation.navigate('settings');
-					}}
-					backgroundColor="rgba(0,0,0,0)"
-					color="rgba(0,122,255,1)"
-				/>
-			)
-		};
-	};
+	static navigationOptions = ({ navigation }) => ({
+		title: Platform.OS === 'android' ? 'Review Jobs' : 'Bloop',
+		headerStyle: {
+			marginTop: Platform.OS === 'android' ? 10 : 0
+		},
+		headerRight: (
+			<Button
+				title="Settings"
+				onPress={() => {
+					navigation.navigate('settings');
+				}}
+				backgroundColor="rgba(0,0,0,0)"
+				color="rgba(0,122,255,1)"
+			/>
+		)
+	});
 
 	renderLikes() {
 		return this.props.likes.map(job => {
@@ -64,6 +62,6 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = ({ likes }) => likes;
+const mapStateToProps = ({ likes }) => ({ likes });
 
 export default connect(mapStateToProps, actions)(ReviewScreen);
