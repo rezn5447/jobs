@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation';
 import { Provider } from 'react-redux';
 import {
 	AuthScreen,
@@ -31,8 +31,14 @@ export default class App extends Component {
 						},
 						{
 							tabBarOptions: {
-								labelStyle: { fontSize: 12 }
-							}
+								activeTintColor: '#03A9F4',
+								inactiveTintColor: 'gray'
+							},
+							labelStyle: { fontSize: 12 },
+							tabBarComponent: TabBarBottom,
+							tabBarPosition: 'bottom',
+							animationEnabled: false,
+							swipeEnabled: false
 						}
 					)
 				}

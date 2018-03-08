@@ -25,7 +25,7 @@ class MapScreen extends Component {
 			longitude: -122,
 			latitude: 37,
 			longitudeDelta: 0.04,
-			latitudeDelta: 0.09
+			latitudeDelta: 2
 		}
 	};
 
