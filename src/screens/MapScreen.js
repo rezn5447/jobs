@@ -5,13 +5,20 @@ import {
 	ToastAndroid,
 	ActivityIndicator
 } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
 
 class MapScreen extends Component {
+	static navigationOptions = {
+		title: 'Jobs',
+		tabBarIcon: ({ tintColor }) => (
+			<Icon name="my-location" size={30} color={tintColor} />
+		)
+	};
+
 	state = {
 		mapLoaded: false,
 		region: {
@@ -67,6 +74,7 @@ class MapScreen extends Component {
 					<Button
 						large
 						title="Search this area"
+						backgroundColor="#03A9F4"
 						icon={{ name: 'search' }}
 						onPress={this.onButtonPress}
 					/>
