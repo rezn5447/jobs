@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AsyncStorage } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import _ from 'lodash';
 import { AppLoading } from 'expo';
 
@@ -15,7 +15,7 @@ export default class WelcomeScreen extends Component {
 	state = { token: null };
 
 	componentWillMount = async () => {
-		let token = await AsyncStorage.getItem('fb_token');
+		const token = await AsyncStorage.getItem('fb_token');
 
 		if (token) {
 			this.props.navigation.navigate('map');
