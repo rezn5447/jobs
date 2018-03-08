@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
 	View,
-	Text,
 	BackHandler,
 	ToastAndroid,
 	ActivityIndicator
@@ -32,11 +31,6 @@ class MapScreen extends Component {
 		BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
 	};
 
-	handleBackButton = () => {
-		ToastAndroid.show('Back button is pressed', ToastAndroid.SHORT);
-		return true;
-	};
-
 	onRegionChangeComplete = region => {
 		console.log(region);
 		this.setState({ region });
@@ -46,6 +40,11 @@ class MapScreen extends Component {
 		this.props.fetchJobs(this.state.region, () => {
 			this.props.navigation.navigate('deck');
 		});
+	};
+
+	handleBackButton = () => {
+		ToastAndroid.show('Back button is pressed', ToastAndroid.SHORT);
+		return true;
 	};
 
 	render() {

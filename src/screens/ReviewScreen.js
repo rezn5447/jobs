@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet, Linking, Platform } from 'react-native';
 import { Button, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 
@@ -27,24 +27,26 @@ class ReviewScreen extends Component {
 
 	renderLikes() {
 		return this.props.likes.map(job => {
+			const { company, formattedRelativeTime, url } = job;
 			return (
 				<Card>
 					<View style={{ height: 200 }}>
 						<View style={styles.detailWrapper}>
-							<Text style={styles.italics}>{job.company}</Text>
-							<Text style={styles.italics}>{job.formattedRelativeTime}</Text>
+							<Text style={styles.italics}>{company}</Text>
+							<Text style={styles.italics}>{formattedRelativeTime}</Text>
 						</View>
+						<Button
+							title="Apply Now!"
+							backgroundColor="#03A9F4"
+							onPress={() => Linking.openURL(url)}
+						/>
 					</View>
 				</Card>
 			);
 		});
 	}
 	render() {
-		return (
-			<View style={styles.container}>
-				<Text>I'm the ReviewScreen component</Text>
-			</View>
-		);
+		return <View style={styles.container}>{this.renderLikes()}</View>;
 	}
 }
 
@@ -62,8 +64,6 @@ const styles = StyleSheet.create({
 	}
 });
 
-mapStateToProps = ({ likes }) => {
-	return { likes };
-};
+const mapStateToProps = ({ likes }) => likes;
 
 export default connect(mapStateToProps, actions)(ReviewScreen);

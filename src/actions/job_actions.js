@@ -22,9 +22,9 @@ const buildJobsUrl = zip => {
 
 export const fetchJobs = (region, callback) => async dispatch => {
 	try {
-		let zip = await reverseGeocode(region);
+		const zip = await reverseGeocode(region);
 		const url = buildJobsUrl(zip);
-		let { data } = await axios.get(url);
+		const { data } = await axios.get(url);
 		dispatch({ type: FETCH_JOBS, payload: data });
 		callback();
 	} catch (e) {
@@ -32,7 +32,7 @@ export const fetchJobs = (region, callback) => async dispatch => {
 	}
 };
 
-export const likeJob = job => {
+export const likeJobs = job => {
 	return {
 		type: LIKE_JOB,
 		payload: job
