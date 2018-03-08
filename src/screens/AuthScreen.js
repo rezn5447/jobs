@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AsyncStorage } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -32,7 +32,7 @@ class AuthScreen extends Component {
 	}
 }
 
-styles = {
+const styles = {
 	container: {
 		flex: 1,
 		alignItems: 'center',
@@ -40,8 +40,6 @@ styles = {
 	}
 };
 
-mapStateToProps = ({ auth }) => {
-	return { token: auth.token };
-};
+const mapStateToProps = ({ auth }) => ({ token: auth.token });
 
 export default connect(mapStateToProps, actions)(AuthScreen);

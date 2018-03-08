@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, AsyncStorage } from 'react-native';
-import _ from 'lodash';
+import { AsyncStorage } from 'react-native';
 import { AppLoading } from 'expo';
-
+import _ from 'lodash';
 import { Slides } from '../components';
 
 const SLIDE_DATA = [
@@ -15,7 +14,7 @@ export default class WelcomeScreen extends Component {
 	state = { token: null };
 
 	componentWillMount = async () => {
-		let token = await AsyncStorage.getItem('fb_token');
+		const token = await AsyncStorage.getItem('fb_token');
 
 		if (token) {
 			this.props.navigation.navigate('map');

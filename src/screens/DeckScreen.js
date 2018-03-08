@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { MapView } from 'expo';
-import { Card, Button } from 'react-native-elements';
+import { Card } from 'react-native-elements';
 import Swipe from '../components/Swipe';
 import * as actions from '../actions';
 
@@ -20,7 +20,7 @@ class DeckScreen extends Component {
 					<MapView
 						scrollEnabled={false}
 						style={{ flex: 1 }}
-						cacheEnabled={Platform.OS === 'android' ? true : false}
+						cacheEnabled={Platform.OS === 'android'}
 						intitialRegion={intitalRegion}
 					/>
 				</View>
@@ -64,8 +64,6 @@ const styles = {
 	}
 };
 
-mapStateToProps = ({ jobs }) => {
-	return { jobs: jobs.results };
-};
+const mapStateToProps = ({ jobs }) => ({ jobs: jobs.results });
 
 export default connect(mapStateToProps, actions)(DeckScreen);
