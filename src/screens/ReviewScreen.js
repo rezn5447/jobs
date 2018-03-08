@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Linking, Platform } from 'react-native';
 import { Button, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { MapView } from 'expo';
 
 import * as actions from '../actions';
 
@@ -25,10 +26,22 @@ class ReviewScreen extends Component {
 
 	renderLikes() {
 		return this.props.likes.map(job => {
-			const { company, formattedRelativeTime, url } = job;
+			const { company, formattedRelativeTime, url, latitude, longitude } = job;
+			const intitalRegion = {
+				longitude,
+				latitude,
+				longitudeDelta: 0.045,
+				latitudeDelta: 0.02
+			};
 			return (
 				<Card>
 					<View style={{ height: 200 }}>
+						<MapView
+							style={{ flex: 1 }}
+							cacheEnabled={Platform.OS === 'android'}
+							scrollEnabled={false}
+							intitialRegion={intitalRegion}
+						/>
 						<View style={styles.detailWrapper}>
 							<Text style={styles.italics}>{company}</Text>
 							<Text style={styles.italics}>{formattedRelativeTime}</Text>

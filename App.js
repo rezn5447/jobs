@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
+import { Provider } from 'react-redux';
 import {
 	AuthScreen,
 	WelcomeScreen,
@@ -8,7 +9,6 @@ import {
 	SettingsScreen,
 	ReviewScreen
 } from './src/screens';
-import { Provider } from 'react-redux';
 import store from './src/store';
 
 export default class App extends Component {
