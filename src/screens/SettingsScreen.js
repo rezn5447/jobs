@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, Platform } from 'react-native';
+import { Button, Icon } from 'react-native-elements';
 
 import { connect } from 'react-redux';
 import { clearLikedJobs } from '../actions';
 
 class SettingsScreen extends Component {
+	static navigationOptions = {
+		title: 'Back to Review',
+		headerStyle: {
+			marginTop: Platform.OS === 'android' ? 24 : 0
+		},
+		tabBarIcon: ({ tintColor }) => (
+			<Icon name="arrow-back" size={30} color={tintColor} />
+		)
+	};
+
 	render() {
 		return (
-			<View>
+			<View style={{ marginTop: 20 }}>
 				<Button
 					title="Reset Liked Jobs"
 					large

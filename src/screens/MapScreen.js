@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-	View,
-	BackHandler,
-	ToastAndroid,
-	ActivityIndicator
-} from 'react-native';
+import { View, Alert, BackHandler, ActivityIndicator } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
@@ -39,7 +34,6 @@ class MapScreen extends Component {
 	};
 
 	onRegionChangeComplete = region => {
-		console.log(region);
 		this.setState({ region });
 	};
 
@@ -50,7 +44,24 @@ class MapScreen extends Component {
 	};
 
 	handleBackButton = () => {
-		ToastAndroid.show('Back button is pressed', ToastAndroid.SHORT);
+		Alert.alert(
+			'Exit App',
+			'Exiting the application?',
+			[
+				{
+					text: 'Cancel',
+					onPress: () => console.log('Cancel Pressed'),
+					style: 'cancel'
+				},
+				{
+					text: 'OK',
+					onPress: () => BackHandler.exitApp()
+				}
+			],
+			{
+				cancelable: false
+			}
+		);
 		return true;
 	};
 

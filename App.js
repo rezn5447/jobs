@@ -45,7 +45,8 @@ export default class App extends Component {
 			},
 			{
 				navigationOptions: {
-					tabBarVisible: false
+					tabBarVisible: false,
+					backBehavior: 'none'
 				},
 				lazy: true
 			}

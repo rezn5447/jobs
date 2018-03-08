@@ -20,7 +20,7 @@ class ReviewScreen extends Component {
 			<Icon name="favorite" size={30} color={tintColor} />
 		),
 		headerStyle: {
-			marginTop: Platform.OS === 'android' ? 10 : 0
+			marginTop: Platform.OS === 'android' ? 24 : 0
 		},
 		headerRight: (
 			<Button
