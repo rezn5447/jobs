@@ -22,11 +22,7 @@ class AuthScreen extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text>I'm the AuthScreen component</Text>
-				<Text>I'm the AuthScreen component</Text>
-				<Text>I'm the AuthScreen component</Text>
-				<Text>I'm the AuthScreen component</Text>
-				<Text>I'm the AuthScreen component</Text>
+				<Text>Facebook Login Only, Sorry</Text>
 			</View>
 		);
 	}

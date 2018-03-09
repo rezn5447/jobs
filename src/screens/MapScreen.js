@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
-import {
-	View,
-	BackHandler,
-	ToastAndroid,
-	ActivityIndicator
-} from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, Alert, BackHandler, ActivityIndicator } from 'react-native';
+import { Button, Icon } from 'react-native-elements';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
 
 class MapScreen extends Component {
+	static navigationOptions = {
+		title: 'Jobs',
+		tabBarIcon: ({ tintColor }) => (
+			<Icon name="my-location" size={30} color={tintColor} />
+		)
+	};
+
 	state = {
 		mapLoaded: false,
 		region: {
 			longitude: -122,
 			latitude: 37,
 			longitudeDelta: 0.04,
-			latitudeDelta: 0.09
+			latitudeDelta: 2
 		}
 	};
 
@@ -32,7 +34,6 @@ class MapScreen extends Component {
 	};
 
 	onRegionChangeComplete = region => {
-		console.log(region);
 		this.setState({ region });
 	};
 
@@ -43,7 +44,24 @@ class MapScreen extends Component {
 	};
 
 	handleBackButton = () => {
-		ToastAndroid.show('Back button is pressed', ToastAndroid.SHORT);
+		Alert.alert(
+			'Exit App',
+			'Exiting the application?',
+			[
+				{
+					text: 'Cancel',
+					onPress: () => console.log('Cancel Pressed'),
+					style: 'cancel'
+				},
+				{
+					text: 'OK',
+					onPress: () => BackHandler.exitApp()
+				}
+			],
+			{
+				cancelable: false
+			}
+		);
 		return true;
 	};
 
@@ -67,6 +85,7 @@ class MapScreen extends Component {
 					<Button
 						large
 						title="Search this area"
+						backgroundColor="#03A9F4"
 						icon={{ name: 'search' }}
 						onPress={this.onButtonPress}
 					/>

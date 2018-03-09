@@ -2,20 +2,34 @@ import React, { Component } from 'react';
 import { View, Text, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { MapView } from 'expo';
-import { Card } from 'react-native-elements';
+import { Card, Button, Icon } from 'react-native-elements';
 import Swipe from '../components/Swipe';
 import * as actions from '../actions';
 
 class DeckScreen extends Component {
+	static navigationOptions = {
+		title: 'Deck',
+		tabBarIcon: ({ tintColor }) => (
+			<Icon name="filter-list" size={30} color={tintColor} />
+		)
+	};
 	renderCard(job) {
+		const {
+			longitude,
+			latitude,
+			jobtitle,
+			company,
+			formattedRelativeTime,
+			snippet
+		} = job;
 		const intitalRegion = {
-			longitude: job.longitude,
-			latitude: job.latitude,
-			latitudeDelta: 0.045,
-			longitudeDelta: 0.02
+			longitude,
+			latitude,
+			latitudeDelta: 0.0922,
+			longitudeDelta: 0.0421
 		};
 		return (
-			<Card title={job.jobtitle}>
+			<Card title={jobtitle}>
 				<View style={{ height: 300 }}>
 					<MapView
 						scrollEnabled={false}
@@ -25,17 +39,25 @@ class DeckScreen extends Component {
 					/>
 				</View>
 				<View style={styles.detailWrapper}>
-					<Text>{job.company}</Text>
-					<Text>{job.formattedRelativeTime}</Text>
+					<Text>{company}</Text>
+					<Text>{formattedRelativeTime}</Text>
 				</View>
-				<Text>{job.snippet.replace(/<b>/g, '').replace(/<\/b/g, '')}</Text>
+				<Text>{snippet.replace(/<b>/g, '').replace(/<\/b/g, '')}</Text>
 			</Card>
 		);
 	}
 
-	renderNoMoreCards() {
-		return <Card title="No more jobs" />;
-	}
+	renderNoMoreCards = () => (
+		<Card title="No More Jobs">
+			<Button
+				title="Back to Map"
+				large
+				icon={{ name: 'my-location' }}
+				backgroundColor="#03A9F4"
+				onPress={() => this.props.navigation.navigate('map')}
+			/>
+		</Card>
+	);
 
 	render() {
 		return (

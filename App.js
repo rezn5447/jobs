@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation';
+import { Provider } from 'react-redux';
 import {
 	AuthScreen,
 	WelcomeScreen,
@@ -8,7 +9,6 @@ import {
 	SettingsScreen,
 	ReviewScreen
 } from './src/screens';
-import { Provider } from 'react-redux';
 import store from './src/store';
 
 export default class App extends Component {
@@ -18,21 +18,35 @@ export default class App extends Component {
 				welcome: { screen: WelcomeScreen },
 				auth: { screen: AuthScreen },
 				main: {
-					screen: TabNavigator({
-						map: { screen: MapScreen },
-						deck: { screen: DeckScreen },
-						review: {
-							screen: StackNavigator({
-								review: { screen: ReviewScreen },
-								settings: { screen: SettingsScreen }
-							})
+					screen: TabNavigator(
+						{
+							map: { screen: MapScreen },
+							deck: { screen: DeckScreen },
+							review: {
+								screen: StackNavigator({
+									review: { screen: ReviewScreen },
+									settings: { screen: SettingsScreen }
+								})
+							}
+						},
+						{
+							tabBarOptions: {
+								activeTintColor: '#03A9F4',
+								inactiveTintColor: 'gray'
+							},
+							labelStyle: { fontSize: 12 },
+							tabBarComponent: TabBarBottom,
+							tabBarPosition: 'bottom',
+							animationEnabled: false,
+							swipeEnabled: false
 						}
-					})
+					)
 				}
 			},
 			{
 				navigationOptions: {
-					tabBarVisible: false
+					tabBarVisible: false,
+					backBehavior: 'none'
 				},
 				lazy: true
 			}

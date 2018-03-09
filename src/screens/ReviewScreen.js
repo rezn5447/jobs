@@ -1,15 +1,26 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Linking, Platform } from 'react-native';
-import { Button, Card } from 'react-native-elements';
+import {
+	ScrollView,
+	View,
+	Text,
+	StyleSheet,
+	Linking,
+	Platform
+} from 'react-native';
+import { Button, Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { MapView } from 'expo';
 
 import * as actions from '../actions';
 
 class ReviewScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
 		title: Platform.OS === 'android' ? 'Review Jobs' : 'Bloop',
+		tabBarIcon: ({ tintColor }) => (
+			<Icon name="favorite" size={30} color={tintColor} />
+		),
 		headerStyle: {
-			marginTop: Platform.OS === 'android' ? 10 : 0
+			marginTop: Platform.OS === 'android' ? 24 : 0
 		},
 		headerRight: (
 			<Button
@@ -25,10 +36,30 @@ class ReviewScreen extends Component {
 
 	renderLikes() {
 		return this.props.likes.map(job => {
-			const { company, formattedRelativeTime, url } = job;
+			const {
+				company,
+				formattedRelativeTime,
+				url,
+				latitude,
+				longitude,
+				jobtitle,
+				jobkey
+			} = job;
+			const intitalRegion = {
+				longitude,
+				latitude,
+				longitudeDelta: 0.045,
+				latitudeDelta: 0.02
+			};
 			return (
-				<Card>
+				<Card title={jobtitle} key={jobkey}>
 					<View style={{ height: 200 }}>
+						<MapView
+							style={{ flex: 1 }}
+							cacheEnabled={Platform.OS === 'android'}
+							scrollEnabled={false}
+							intitialRegion={intitalRegion}
+						/>
 						<View style={styles.detailWrapper}>
 							<Text style={styles.italics}>{company}</Text>
 							<Text style={styles.italics}>{formattedRelativeTime}</Text>
@@ -44,7 +75,9 @@ class ReviewScreen extends Component {
 		});
 	}
 	render() {
-		return <View style={styles.container}>{this.renderLikes()}</View>;
+		return (
+			<ScrollView style={styles.container}>{this.renderLikes()}</ScrollView>
+		);
 	}
 }
 
@@ -53,6 +86,7 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	detailWrapper: {
+		marginTop: 10,
 		marginBottom: 10,
 		flexDirection: 'row',
 		justifyContent: 'space-around'
